@@ -1,0 +1,2 @@
+C:\Users\Oskar\Desktop\cpp\AteroidsGame\x64\Debug\AteroidsGame.exe
+C:\Users\Oskar\Desktop\cpp\AteroidsGame\x64\Debug\AteroidsGame.pdb
