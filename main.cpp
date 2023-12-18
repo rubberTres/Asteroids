@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <list>
+#include <random>
 
 constexpr float SCREEN_WIDTH = 1200.0f;
 constexpr float SCREEN_HEIGHT = 900.0f;
@@ -14,8 +15,8 @@ constexpr float SHOOT_DELAY = 0.2f;
 constexpr float BULLET_LIFE = 3.0f;
 constexpr float ASTEROID_SPIN = 25.0f;
 constexpr float ASTEROID_SPEED = 80.0f;
-constexpr float ASTEROID_WIDTH = 50.0f;
-constexpr float ASTEROID_HEIGHT = 40.0f;
+constexpr float ASTEROID_WIDTH = 90.0f;
+constexpr float ASTEROID_HEIGHT = 80.0f;
 
 class Entity {
 public:
@@ -132,10 +133,31 @@ public:
     void update(float deltaTime) override {
         position += ASTEROID_SPEED * direction * deltaTime;
         angle += ASTEROID_SPIN * deltaTime;
+
+        if (position.x < ASTEROID_WIDTH / 2.0f) {
+            direction.x = abs(direction.x);
+        } else if (position.x > SCREEN_WIDTH - ASTEROID_WIDTH / 2.0f) {
+            direction.x = -abs(direction.x);
+        }
+
+        if (position.y < ASTEROID_HEIGHT / 2.0f) {
+            direction.y = abs(direction.y);
+        } else if (position.y > SCREEN_HEIGHT - ASTEROID_HEIGHT / 2.0f) {
+            direction.y = -abs(direction.y);
+        }
     }
 
     void render(sf::RenderWindow& window) override {
         window.draw(array, sf::Transform().translate(position).rotate(angle));
+    }
+
+    static sf::Vector2f getRandomDirection() {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<float> dist(0.0f, 2.0f * M_PI);
+
+        float angle = dist(gen);
+        return sf::Vector2f(cos(angle), sin(angle));
     }
 
 private:
@@ -149,7 +171,7 @@ int main()
     sf::Clock clock;
 
     entities.push_back(new Player());
-    entities.push_back(new Asteroid(sf::Vector2f(1, 0)));
+    entities.push_back(new Asteroid(Asteroid::getRandomDirection()));
 
     while (window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
