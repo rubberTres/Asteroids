@@ -22,6 +22,7 @@ public:
 
 std::vector<Entity*> entities{};
 std::list<std::vector<Entity*>::iterator> toRemoveList{};
+std::list<Entity*> toAddList{};
 
 class Bullet : public Entity {
 public:
@@ -80,7 +81,7 @@ public:
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shootTimer <= 0.0f) {
             shootTimer = SHOOT_DELAY;
             float radians = angle * (M_PI / 180.0f);
-            entities.push_back(new Bullet(position, sf::Vector2f(cos(radians), sin(radians))));
+            toAddList  .push_back(new Bullet(position, sf::Vector2f(cos(radians), sin(radians))));
         }
     }
 
@@ -113,6 +114,7 @@ int main()
             }
         }
 
+        toAddList.clear();
         toRemoveList.clear();
         window.clear();
 
@@ -124,6 +126,10 @@ int main()
         for (const auto& item : toRemoveList) {
             delete* item;
             entities.erase(item);
+        }
+
+        for (auto& ptr : toAddList) {
+            entities.push_back(ptr);
         }
 
         window.display();
