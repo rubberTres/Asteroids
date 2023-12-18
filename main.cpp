@@ -14,9 +14,10 @@ constexpr float BULLET_SPEED = 400.0f;
 constexpr float SHOOT_DELAY = 0.2f;
 constexpr float BULLET_LIFE = 3.0f;
 constexpr float ASTEROID_SPIN = 25.0f;
-constexpr float ASTEROID_SPEED = 80.0f;
+constexpr float ASTEROID_SPEED = 280.0f;
 constexpr float ASTEROID_WIDTH = 90.0f;
 constexpr float ASTEROID_HEIGHT = 80.0f;
+constexpr float ASTEROID_SPAWN_TIME = 3.0f;
 
 class Entity {
 public:
@@ -110,8 +111,8 @@ private:
 
 class Asteroid: public Entity {
 public:
-    Asteroid(sf::Vector2f direction)
-        : Entity(sf::Vector2f(900, 300), 0), direction(direction), array(sf::LineStrip, 12) {
+    Asteroid(sf::Vector2f direction = Asteroid::getRandomDirection(), sf::Vector2f position = Asteroid::getRandomPosition())
+        : Entity(sf::Vector2f(position), 0), direction(direction), array(sf::LineStrip, 12) {
         array[0].position = sf::Vector2f(-40, 40);
         array[1].position = sf::Vector2f(-50, 10);
         array[2].position = sf::Vector2f(-10, -20);
@@ -160,6 +161,14 @@ public:
         return sf::Vector2f(cos(angle), sin(angle));
     }
 
+    static sf::Vector2f getRandomPosition() {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<float> xAxis(ASTEROID_WIDTH / 2.0f, SCREEN_WIDTH - ASTEROID_WIDTH / 2.0f);
+        std::uniform_real_distribution<float> yAxis(ASTEROID_HEIGHT / 2.0f, SCREEN_HEIGHT - ASTEROID_HEIGHT / 2.0f);
+        return sf::Vector2f(xAxis(gen), yAxis(gen));
+    }
+
 private:
     sf::VertexArray array;
     sf::Vector2f direction;
@@ -171,7 +180,8 @@ int main()
     sf::Clock clock;
 
     entities.push_back(new Player());
-    entities.push_back(new Asteroid(Asteroid::getRandomDirection()));
+
+    float asteroidSpawnTime = ASTEROID_SPAWN_TIME;
 
     while (window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
@@ -190,6 +200,8 @@ int main()
         toRemoveList.clear();
         window.clear();
 
+        asteroidSpawnTime -= deltaTime;
+
         for (size_t i = 0; i < entities.size(); i++) {
             entities[i]->update(deltaTime);
             entities[i]->render(window);
@@ -202,6 +214,11 @@ int main()
 
         for (auto& ptr : toAddList) {
             entities.push_back(ptr);
+        }
+
+        if (asteroidSpawnTime <= 0.0f) {
+            entities.push_back(new Asteroid());
+            asteroidSpawnTime = ASTEROID_SPAWN_TIME;
         }
 
         window.display();
