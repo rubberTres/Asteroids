@@ -25,6 +25,7 @@ void Bullet::update(float deltaTime) {
 
             if (physics::intersects(position, physics::getTransformed(asteroid->getVertexArray(), transform))) {
                 lifetime = 0.0f;
+                Game::toRemoveList.push_back(std::find(Game::entities.begin(), Game::entities.end(), asteroid));
             }
 
         }
