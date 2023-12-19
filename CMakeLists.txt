@@ -13,7 +13,9 @@ set(SOURCE_FILES main.cpp
         app/Modules/Player/Player.cpp
         app/Modules/Player/Player.h
         app/Game/Game.cpp
-        app/Game/Game.h)
+        app/Game/Game.h
+        app/Physics/Physics.h
+        app/Physics/Physics.cpp)
 add_executable(HelloSFML ${SOURCE_FILES})
 include_directories(/usr/local/include)
 
