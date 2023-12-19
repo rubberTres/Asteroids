@@ -56,6 +56,41 @@ build CMakeFiles/HelloSFML.dir/main.cpp.o: CXX_COMPILER__HelloSFML_unscanned_Deb
   OBJECT_DIR = CMakeFiles/HelloSFML.dir
   OBJECT_FILE_DIR = CMakeFiles/HelloSFML.dir
 
+build CMakeFiles/HelloSFML.dir/app/Modules/Asteroid/Asteroid.cpp.o: CXX_COMPILER__HelloSFML_unscanned_Debug /Users/oski/Documents/AGH/ProgramowanieObiektowe/Asteroids/app/Modules/Asteroid/Asteroid.cpp || cmake_object_order_depends_target_HelloSFML
+  DEP_FILE = CMakeFiles/HelloSFML.dir/app/Modules/Asteroid/Asteroid.cpp.o.d
+  FLAGS = -std=c++11 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/HelloSFML.dir
+  OBJECT_FILE_DIR = CMakeFiles/HelloSFML.dir/app/Modules/Asteroid
+
+build CMakeFiles/HelloSFML.dir/app/Modules/Entity/Entity.cpp.o: CXX_COMPILER__HelloSFML_unscanned_Debug /Users/oski/Documents/AGH/ProgramowanieObiektowe/Asteroids/app/Modules/Entity/Entity.cpp || cmake_object_order_depends_target_HelloSFML
+  DEP_FILE = CMakeFiles/HelloSFML.dir/app/Modules/Entity/Entity.cpp.o.d
+  FLAGS = -std=c++11 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/HelloSFML.dir
+  OBJECT_FILE_DIR = CMakeFiles/HelloSFML.dir/app/Modules/Entity
+
+build CMakeFiles/HelloSFML.dir/app/Modules/Bullet/Bullet.cpp.o: CXX_COMPILER__HelloSFML_unscanned_Debug /Users/oski/Documents/AGH/ProgramowanieObiektowe/Asteroids/app/Modules/Bullet/Bullet.cpp || cmake_object_order_depends_target_HelloSFML
+  DEP_FILE = CMakeFiles/HelloSFML.dir/app/Modules/Bullet/Bullet.cpp.o.d
+  FLAGS = -std=c++11 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/HelloSFML.dir
+  OBJECT_FILE_DIR = CMakeFiles/HelloSFML.dir/app/Modules/Bullet
+
+build CMakeFiles/HelloSFML.dir/app/Modules/Player/Player.cpp.o: CXX_COMPILER__HelloSFML_unscanned_Debug /Users/oski/Documents/AGH/ProgramowanieObiektowe/Asteroids/app/Modules/Player/Player.cpp || cmake_object_order_depends_target_HelloSFML
+  DEP_FILE = CMakeFiles/HelloSFML.dir/app/Modules/Player/Player.cpp.o.d
+  FLAGS = -std=c++11 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/HelloSFML.dir
+  OBJECT_FILE_DIR = CMakeFiles/HelloSFML.dir/app/Modules/Player
+
+build CMakeFiles/HelloSFML.dir/app/Game/Game.cpp.o: CXX_COMPILER__HelloSFML_unscanned_Debug /Users/oski/Documents/AGH/ProgramowanieObiektowe/Asteroids/app/Game/Game.cpp || cmake_object_order_depends_target_HelloSFML
+  DEP_FILE = CMakeFiles/HelloSFML.dir/app/Game/Game.cpp.o.d
+  FLAGS = -std=c++11 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/HelloSFML.dir
+  OBJECT_FILE_DIR = CMakeFiles/HelloSFML.dir/app/Game
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target HelloSFML
@@ -64,7 +99,7 @@ build CMakeFiles/HelloSFML.dir/main.cpp.o: CXX_COMPILER__HelloSFML_unscanned_Deb
 #############################################
 # Link the executable HelloSFML
 
-build HelloSFML: CXX_EXECUTABLE_LINKER__HelloSFML_Debug CMakeFiles/HelloSFML.dir/main.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.6.1.dylib /opt/homebrew/lib/libsfml-audio.2.6.1.dylib /opt/homebrew/lib/libsfml-network.2.6.1.dylib /opt/homebrew/lib/libsfml-window.2.6.1.dylib /opt/homebrew/lib/libsfml-system.2.6.1.dylib
+build HelloSFML: CXX_EXECUTABLE_LINKER__HelloSFML_Debug CMakeFiles/HelloSFML.dir/main.cpp.o CMakeFiles/HelloSFML.dir/app/Modules/Asteroid/Asteroid.cpp.o CMakeFiles/HelloSFML.dir/app/Modules/Entity/Entity.cpp.o CMakeFiles/HelloSFML.dir/app/Modules/Bullet/Bullet.cpp.o CMakeFiles/HelloSFML.dir/app/Modules/Player/Player.cpp.o CMakeFiles/HelloSFML.dir/app/Game/Game.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.6.1.dylib /opt/homebrew/lib/libsfml-audio.2.6.1.dylib /opt/homebrew/lib/libsfml-network.2.6.1.dylib /opt/homebrew/lib/libsfml-window.2.6.1.dylib /opt/homebrew/lib/libsfml-system.2.6.1.dylib
   FLAGS = -std=c++11 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = -Wl,-rpath,/opt/homebrew/lib  /opt/homebrew/lib/libsfml-graphics.2.6.1.dylib  /opt/homebrew/lib/libsfml-audio.2.6.1.dylib  /opt/homebrew/lib/libsfml-network.2.6.1.dylib  /opt/homebrew/lib/libsfml-window.2.6.1.dylib  /opt/homebrew/lib/libsfml-system.2.6.1.dylib
   OBJECT_DIR = CMakeFiles/HelloSFML.dir

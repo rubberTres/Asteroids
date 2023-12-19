@@ -3,7 +3,17 @@ project(Asteroids)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp
+        app/Modules/Asteroid/Asteroid.cpp
+        app/Modules/Asteroid/Asteroid.h
+        app/Modules/Entity/Entity.cpp
+        app/Modules/Entity/Entity.h
+        app/Modules/Bullet/Bullet.cpp
+        app/Modules/Bullet/Bullet.h
+        app/Modules/Player/Player.cpp
+        app/Modules/Player/Player.h
+        app/Game/Game.cpp
+        app/Game/Game.h)
 add_executable(HelloSFML ${SOURCE_FILES})
 include_directories(/usr/local/include)
 
