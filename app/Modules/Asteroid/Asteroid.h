@@ -9,7 +9,7 @@
 #include "../Entity/Entity.h"
 
 constexpr float ASTEROID_SPIN = 25.0f;
-constexpr float ASTEROID_SPEED = 280.0f;
+constexpr float ASTEROID_SPEED = 80.0f;
 constexpr float ASTEROID_WIDTH = 90.0f;
 constexpr float ASTEROID_HEIGHT = 80.0f;
 constexpr float ASTEROID_SPAWN_TIME = 3.0f;
@@ -21,6 +21,8 @@ public:
     void update(float deltaTime) override;
 
     void render(sf::RenderWindow& window) override;
+
+    const sf::VertexArray& getVertexArray() const;
 
     static sf::Vector2f getRandomDirection();
 

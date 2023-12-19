@@ -58,3 +58,7 @@ sf::Vector2f Asteroid::getRandomPosition() {
     std::uniform_real_distribution<float> yAxis(ASTEROID_HEIGHT / 2.0f, SCREEN_HEIGHT - ASTEROID_HEIGHT / 2.0f);
     return sf::Vector2f(xAxis(gen), yAxis(gen));
 }
+
+const sf::VertexArray &Asteroid::getVertexArray() const {
+    return array;
+}
