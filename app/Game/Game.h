@@ -6,9 +6,12 @@
 #define ASTEROIDS_GAME_H
 
 
+#include <unordered_map>
 #include <vector>
 #include <list>
+#include <SFML/Audio/SoundBuffer.hpp>
 #include "../Modules/Entity/Entity.h"
+#include <SFML/Audio.hpp>
 
 class Game {
 
@@ -21,6 +24,7 @@ public:
     static std::list<Entity*> toAddList;
 
     static size_t score;
+    static std::unordered_map<std::string, sf::SoundBuffer> soundBuffers;
 
 private:
     static float asteroidSpawnTime;

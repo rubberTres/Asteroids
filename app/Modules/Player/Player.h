@@ -27,6 +27,8 @@ public:
 
 private:
     sf::VertexArray array;
+    sf::Sound shootSound;
+
     float shootTimer;
 };
 
