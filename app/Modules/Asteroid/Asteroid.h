@@ -12,7 +12,7 @@ constexpr float ASTEROID_SPIN = 25.0f;
 constexpr float ASTEROID_SPEED = 80.0f;
 constexpr float ASTEROID_WIDTH = 90.0f;
 constexpr float ASTEROID_HEIGHT = 80.0f;
-constexpr float ASTEROID_SPAWN_TIME = 3.0f;
+constexpr float ASTEROID_SPAWN_TIME = 2.0f;
 
 class Asteroid: public Entity {
 public:

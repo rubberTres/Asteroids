@@ -15,8 +15,6 @@ Player::Player()
     for (size_t i = 0; i < array.getVertexCount(); i++) {
         array[i].color = sf::Color::White;
     }
-
-    shootSound.setBuffer(Game::soundBuffers["shoot"]);
 }
 
 void Player::render(sf::RenderWindow &window) {
@@ -44,7 +42,7 @@ void Player::update(float deltaTime) {
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shootTimer <= 0.0f) {
-        shootSound.play();
+        Game::shootSound.play();
         shootTimer = SHOOT_DELAY;
         float radians = angle * (M_PI / 180.0f);
         Game::toAddList.push_back(new Bullet(position, sf::Vector2f(cos(radians), sin(radians))));

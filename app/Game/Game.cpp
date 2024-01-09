@@ -10,9 +10,11 @@ std::vector<Entity*> Game::entities{};
 std::list<std::vector<Entity*>::const_iterator> Game::toRemoveList{};
 std::list<Entity*> Game::toAddList{};
 
-std::unordered_map<std::string, sf::SoundBuffer> Game::soundBuffers;
 size_t Game::score{};
 float Game::asteroidSpawnTime{};
+
+sf::SoundBuffer Game::shootSoundBuffer{};
+sf::Sound Game::shootSound{};
 
 sf::Text Game::scoreText{};
 sf::Font Game::font{};
@@ -26,7 +28,8 @@ void Game::begin() {
     entities.push_back(new Player());
     asteroidSpawnTime = ASTEROID_SPAWN_TIME;
 
-    soundBuffers["shoot"].loadFromFile("../app/sounds/shoot.mp3");
+    shootSoundBuffer.loadFromFile("../app/sounds/shoot.mp3");
+    shootSound.setBuffer(shootSoundBuffer);
 }
 
 void Game::update(sf::RenderWindow &window, float deltaTime) {

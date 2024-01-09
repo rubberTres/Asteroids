@@ -24,7 +24,9 @@ public:
     static std::list<Entity*> toAddList;
 
     static size_t score;
-    static std::unordered_map<std::string, sf::SoundBuffer> soundBuffers;
+
+    static sf::SoundBuffer shootSoundBuffer;
+    static sf::Sound shootSound;
 
 private:
     static float asteroidSpawnTime;
