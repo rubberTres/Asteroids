@@ -43,13 +43,13 @@ bool physics::intersectsPoly(const sf::VertexArray& poly1, const sf::VertexArray
         float max2 = std::numeric_limits<float>::min();
 
         for (size_t j = 0; j < n1; j++) {
-            float projection =poly1[j].position.x * normal.x + poly1[j].position.y * normal.y;
+            float projection = poly1[j].position.x * normal.x + poly1[j].position.y * normal.y;
             min1 = std::min(min1, projection);
             max1 = std::max(max1, projection);
         }
 
         for (size_t j = 0; j < n2; j++) {
-            float projection =poly2[j].position.x * normal.x + poly2[j].position.y * normal.y;
+            float projection = poly2[j].position.x * normal.x + poly2[j].position.y * normal.y;
             min2 = std::min(min2, projection);
             max2 = std::max(max2, projection);
         }

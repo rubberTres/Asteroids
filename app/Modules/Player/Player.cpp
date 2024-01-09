@@ -3,7 +3,6 @@
 //
 
 #include "Player.h"
-#include "../Asteroid//Asteroid.h";
 #include "../../Physics/Physics.h"
 
 Player::Player()
@@ -56,9 +55,9 @@ void Player::update(float deltaTime) {
                     .translate(asteroid->position)
                     .rotate(asteroid->angle);
 
-            if (physics::intersectsPoly(physics::getTransformed(array, playerTransform),physics::getTransformed(asteroid->getVertexArray(), asteroidTransform))) {
-                //Game::gameOver();
+            if (physics::intersectsPoly(physics::getTransformed(array, playerTransform), physics::getTransformed(asteroid->getVertexArray(), asteroidTransform))) {
                 printf("game over\n");
+                //Game::gameOver();
             }
         }
     }
