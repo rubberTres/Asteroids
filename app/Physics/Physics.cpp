@@ -27,7 +27,7 @@ bool physics::intersects(const sf::Vector2f &point, const sf::VertexArray &polyg
 }
 
 //SAT Algorithm
-bool physics::intersects(const sf::VertexArray &poly1, const sf::VertexArray &poly2) {
+bool physics::intersects(const sf::VertexArray& poly1, const sf::VertexArray& poly2) {
     size_t n1 = poly1.getVertexCount() - 1;
     size_t n2 = poly2.getVertexCount() - 1;
 
@@ -35,25 +35,24 @@ bool physics::intersects(const sf::VertexArray &poly1, const sf::VertexArray &po
         sf::Vector2f edge = poly1[i].position - poly1[(i + 1) % n1].position;
         sf::Vector2f normal(-edge.y, edge.x);
 
-        //normalize vector
         float length = sqrt(normal.x * normal.x + normal.y * normal.y);
         normal /= length;
 
         float min1 = std::numeric_limits<float>::max();
-        float max1 = std::numeric_limits<float>::max();
+        float max1 = std::numeric_limits<float>::min();
         float min2 = std::numeric_limits<float>::max();
         float max2 = std::numeric_limits<float>::min();
 
         for (size_t j = 0; j < n1; j++) {
-            float projection = poly1[j].position.x * normal.x + poly1[i].position.y * normal.y;
+            float projection = poly1[j].position.x * normal.x + poly1[j].position.y * normal.y;
             min1 = std::min(min1, projection);
-            max1 = std::min(max1, projection);
+            max1 = std::max(max1, projection);
         }
 
         for (size_t j = 0; j < n2; j++) {
-            float projection = poly2[j].position.x * normal.x + poly2[i].position.y * normal.y;
+            float projection = poly2[j].position.x * normal.x + poly2[j].position.y * normal.y;
             min2 = std::min(min2, projection);
-            max2 = std::min(max2, projection);
+            max2 = std::max(max2, projection);
         }
 
         if (max1 < min2 || max2 < min1) {
