@@ -4,14 +4,14 @@
 
 #include "Physics.h"
 
-bool physics::intersects(const sf::Vector2f &point, const sf::VertexArray &polygon) {
+bool physics::intersects(const sf::Vector2f& point, const sf::VertexArray& polygon) {
     size_t n = polygon.getVertexCount() - 1;
     size_t intersectionCount = 0;
     sf::Vector2f rayEnd = sf::Vector2f(std::numeric_limits<float>::max(), point.y);
 
-    for (size_t j = 0; j < n; j++) {
-        sf::Vector2f p1 = polygon[j].position;
-        sf::Vector2f p2 = polygon[(j + 1) % n].position;
+    for (size_t i = 0; i < n; i++) {
+        sf::Vector2f p1 = polygon[i].position;
+        sf::Vector2f p2 = polygon[(i + 1) % n].position;
 
         if ((p1.y < point.y && p2.y >= point.y) || (p2.y < point.y && p1.y >= point.y)) {
             float t = (point.y - p1.y) / (p2.y - p1.y);
@@ -26,8 +26,7 @@ bool physics::intersects(const sf::Vector2f &point, const sf::VertexArray &polyg
     return intersectionCount % 2 == 1;
 }
 
-//SAT Algorithm
-bool physics::intersects(const sf::VertexArray& poly1, const sf::VertexArray& poly2) {
+bool physics::intersectsPoly(const sf::VertexArray& poly1, const sf::VertexArray& poly2) {
     size_t n1 = poly1.getVertexCount() - 1;
     size_t n2 = poly2.getVertexCount() - 1;
 
@@ -44,13 +43,13 @@ bool physics::intersects(const sf::VertexArray& poly1, const sf::VertexArray& po
         float max2 = std::numeric_limits<float>::min();
 
         for (size_t j = 0; j < n1; j++) {
-            float projection = poly1[j].position.x * normal.x + poly1[j].position.y * normal.y;
+            float projection =poly1[j].position.x * normal.x + poly1[j].position.y * normal.y;
             min1 = std::min(min1, projection);
             max1 = std::max(max1, projection);
         }
 
         for (size_t j = 0; j < n2; j++) {
-            float projection = poly2[j].position.x * normal.x + poly2[j].position.y * normal.y;
+            float projection =poly2[j].position.x * normal.x + poly2[j].position.y * normal.y;
             min2 = std::min(min2, projection);
             max2 = std::max(max2, projection);
         }

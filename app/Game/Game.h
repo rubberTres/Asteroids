@@ -16,8 +16,11 @@
 class Game {
 
 public:
+    static void init();
     static void begin();
     static void update(sf::RenderWindow& window, float deltaTime);
+
+    static void gameOver();
 
     static std::vector<Entity*> entities;
     static std::list<std::vector<Entity*>::const_iterator> toRemoveList;
@@ -32,6 +35,8 @@ private:
     static float asteroidSpawnTime;
     static sf::Text scoreText;
     static sf::Font font;
+
+    static bool isGameOver;
 };
 
 

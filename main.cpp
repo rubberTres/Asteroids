@@ -7,6 +7,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Asteroids game AGH", sf::Style::Close | sf::Style::Titlebar);
     sf::Clock clock;
 
+    Game::init();
     Game::begin();
 
     while (window.isOpen()) {

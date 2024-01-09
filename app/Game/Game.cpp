@@ -16,20 +16,24 @@ float Game::asteroidSpawnTime{};
 sf::SoundBuffer Game::shootSoundBuffer{};
 sf::Sound Game::shootSound{};
 
+bool Game::isGameOver{};
+
 sf::Text Game::scoreText{};
 sf::Font Game::font{};
 
-void Game::begin() {
+void Game::init() {
     font.loadFromFile("../font.ttf");
     scoreText.setFont(font);
     scoreText.setPosition(sf::Vector2f(48, 20));
     scoreText.setCharacterSize(40);
-
-    entities.push_back(new Player());
-    asteroidSpawnTime = ASTEROID_SPAWN_TIME;
-
     shootSoundBuffer.loadFromFile("../app/sounds/shoot.mp3");
     shootSound.setBuffer(shootSoundBuffer);
+}
+
+void Game::begin() {
+    isGameOver = false;
+    entities.push_back(new Player());
+    asteroidSpawnTime = ASTEROID_SPAWN_TIME;
 }
 
 void Game::update(sf::RenderWindow &window, float deltaTime) {
@@ -60,4 +64,14 @@ void Game::update(sf::RenderWindow &window, float deltaTime) {
 
     scoreText.setString(std::to_string(score));
     window.draw(scoreText);
+
+    if (isGameOver) {
+        entities.clear();
+        score = 0;
+        begin();
+    }
+}
+
+void Game::gameOver() {
+    isGameOver = true;
 }

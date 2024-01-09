@@ -2,7 +2,7 @@
 #include "Asteroid.h"
 
 Asteroid::Asteroid(sf::Vector2f direction, sf::Vector2f position)
-    : Entity(sf::Vector2f(position), 0), direction(direction), array(sf::LineStrip, 12) {
+        : Entity(position, 0), direction(direction), array(sf::LinesStrip, 12) {
     array[0].position = sf::Vector2f(-40, 40);
     array[1].position = sf::Vector2f(-50, 10);
     array[2].position = sf::Vector2f(-10, -20);
@@ -38,8 +38,12 @@ void Asteroid::update(float deltaTime) {
     }
 }
 
-void Asteroid::render(sf::RenderWindow &window) {
+void Asteroid::render(sf::RenderWindow& window) {
     window.draw(array, sf::Transform().translate(position).rotate(angle));
+}
+
+const sf::VertexArray& Asteroid::getVertexArray() const {
+    return array;
 }
 
 sf::Vector2f Asteroid::getRandomDirection() {
@@ -56,9 +60,6 @@ sf::Vector2f Asteroid::getRandomPosition() {
     std::mt19937 gen(rd());
     std::uniform_real_distribution<float> xAxis(ASTEROID_WIDTH / 2.0f, SCREEN_WIDTH - ASTEROID_WIDTH / 2.0f);
     std::uniform_real_distribution<float> yAxis(ASTEROID_HEIGHT / 2.0f, SCREEN_HEIGHT - ASTEROID_HEIGHT / 2.0f);
-    return sf::Vector2f(xAxis(gen), yAxis(gen));
-}
 
-const sf::VertexArray &Asteroid::getVertexArray() const {
-    return array;
+    return sf::Vector2f(xAxis(gen), yAxis(gen));
 }

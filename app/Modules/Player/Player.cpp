@@ -3,6 +3,8 @@
 //
 
 #include "Player.h"
+#include "../Asteroid//Asteroid.h";
+#include "../../Physics/Physics.h"
 
 Player::Player()
         : Entity(sf::Vector2f(500, 500), 0), array(sf::LineStrip, 5), shootTimer() {
@@ -15,10 +17,6 @@ Player::Player()
     for (size_t i = 0; i < array.getVertexCount(); i++) {
         array[i].color = sf::Color::White;
     }
-}
-
-void Player::render(sf::RenderWindow &window) {
-    window.draw(array, sf::Transform().translate(position).rotate(angle));
 }
 
 void Player::update(float deltaTime) {
@@ -42,9 +40,30 @@ void Player::update(float deltaTime) {
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shootTimer <= 0.0f) {
-        Game::shootSound.play();
+        //Game::shootSound.play();
         shootTimer = SHOOT_DELAY;
         float radians = angle * (M_PI / 180.0f);
         Game::toAddList.push_back(new Bullet(position, sf::Vector2f(cos(radians), sin(radians))));
     }
+
+    sf::Transform playerTransform = sf::Transform().translate(position).rotate(angle);
+
+    for (size_t i = 0; i < Game::entities.size(); i++) {
+        if (typeid(*Game::entities[i]) == typeid(Asteroid)) {
+            Asteroid* asteroid = dynamic_cast<Asteroid*>(Game::entities[i]);
+
+            sf::Transform asteroidTransform = sf::Transform()
+                    .translate(asteroid->position)
+                    .rotate(asteroid->angle);
+
+            if (physics::intersectsPoly(physics::getTransformed(array, playerTransform),physics::getTransformed(asteroid->getVertexArray(), asteroidTransform))) {
+                //Game::gameOver();
+                printf("game over\n");
+            }
+        }
+    }
+}
+
+void Player::render(sf::RenderWindow &window) {
+    window.draw(array, sf::Transform().translate(position).rotate(angle));
 }

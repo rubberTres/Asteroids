@@ -3,7 +3,7 @@
 //
 
 #include "Bullet.h"
-#include "../Asteroid/Asteroid.h";
+#include "../Asteroid/Asteroid.h"
 #include "../../Physics/Physics.h"
 
 Bullet::Bullet(sf::Vector2f position, sf::Vector2f direction)
