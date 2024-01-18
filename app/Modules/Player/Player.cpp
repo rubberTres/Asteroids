@@ -57,7 +57,6 @@ void Player::update(float deltaTime) {
 
             if (physics::intersectsPoly(physics::getTransformed(array, playerTransform), physics::getTransformed(asteroid->getVertexArray(), asteroidTransform))) {
                 printf("game over\n");
-                //Game::gameOver();
             }
         }
     }
